@@ -436,7 +436,7 @@
 
             <section class="places">
                 <div class="container">
-                    <div class="places-filter places-filter__big-search">
+                    <div class="places-filter">
                         <fieldset class="fg search-field">
     <input class="_js-test-search" type="text" placeholder="Поиск">
     <button class="search-field__btn">
@@ -465,6 +465,9 @@
     </select>
 </fieldset>
 
+                        <button class="places-filter__find m-btn m-btn-big m-btn-red">
+                            <span>ОПРЕДЕЛИТЬ МОЙ АДРЕС</span>
+                        </button>
                         <div class="places-filter__tabs">
                             <button class="tab" data-tab="map">
                                 <span>карта</span>
@@ -475,408 +478,94 @@
                         </div>
                     </div>
                     <div class="places__content">
-                        <div class="places__grid">
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
+                        <div class="map" id="map">
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
 </div>
+<script type="text/javascript">
+    ymaps.ready(init);
+    let coord = [53.884901, 27.504752]
+    let mapPoints = [
+        {
+            title: "Головной офис",
+            address: "220036, г. Минск, пр. Жукова, 29, 4 этаж",
+            phone: "+375 (17) 373 58 36",
+            site: "www.magazin.ru",
+            workTime: 'Пн-Пт с 09:00 до 20:00',
+            cords: [53.884901, 27.504752]
+        },
+        {
+            title: "Гефест-Кварц",
+            address: "220036, г. Минск, пр. Жукова, 29, 4 этаж",
+            phone: "+375 (17) 373 58 36",
+            site: "www.magazin.ru",
+            workTime: 'Пн-Пт с 09:00 до 20:00',
+            cords: [53.882423, 27.509837]
+        },
+        {
+            title: "Гефест-техника",
+            address: "220036, г. Минск, пр. Жукова, 29, 4 этаж",
+            phone: "+375 (17) 373 58 36",
+            site: "www.magazin.ru",
+            workTime: 'Пн-Пт с 09:00 до 20:00',
+            cords: [53.884015, 27.512693]
+        },
+    ]
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
+    function init() {
+        let myMap = new ymaps.Map("map", {
+            center: coord,
+            zoom: 16,
+            controls: []
+        });
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
+        // myMap.behaviors.disable('scrollZoom');
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
+        mapPoints.forEach(el => {
+            let placeMark = new ymaps.Placemark(el.cords, {
+                    balloonContentHeader: ``,
+                    balloonContentBody: `
+                <div class="place-card">
+                    <div class="place-card__title">
+                        ${el.title}
+                    </div>
+                    <div class="place-card__address">
+                        ${el.address}
+                    </div>
+                    <a href="tel:${el.phone}" class="place-card__phone">
+                        <img src="img/phone2.svg" alt="">
+                        <span>${el.phone}</span>
+                    </a>
+                    <a href="${el.site}" class="place-card__site">
+                        ${el.site}
+                    </a>
+                    <div class="place-card__work">
+                        <span>Работаем </span>
+                        ${el.workTime}
+                    </div>
+                </div>
+                `,
+                    balloonContentFooter: '',
+                    hintContent: '',
+                },
+                {
+                    iconLayout: 'default#image',
+                    iconImageHref: "img/mark.svg",
+                    iconImageSize: [30, 30],
+                }
+            );
+            myMap.geoObjects.add(placeMark);
+        })
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
+    }
+</script>
 
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                            <div class="place-card">
-    <div class="place-card__title">
-        Магазин название
-    </div>
-    <div class="place-card__address">
-        220036, г. Минск, пр. Жукова, 29, 4 этаж
-    </div>
-    <a href="tel:+375173735836" class="place-card__phone">
-        <img src="img/phone2.svg" alt="">
-        <span>+375 (17) 373 58 36</span>
-    </a>
-    <a href="www.magazin.ru" class="place-card__site">
-        www.magazin.ru
-    </a>
-    <div class="place-card__work">
-        <span>Работаем </span>
-        Пн-Пт с 09:00 до 20:00
-    </div>
-</div>
-
-                        </div>
                     </div>
                 </div>
             </section>
