@@ -48,7 +48,7 @@
                 </div>
                 <div class="menu__item">
                     <div class="menu__item-show">
-                        каталог
+                        <a href="">каталог</a>
                     </div>
                     <div class="menu__item-hidden">
                         <div class="submenu">
@@ -113,7 +113,7 @@
                 </div>
                 <div class="menu__item">
                     <div class="menu__item-show">
-                        коллекции
+                        <a href="">коллекции</a>
                     </div>
                     <div class="menu__item-hidden">
                         <div class="submenu">
@@ -232,7 +232,7 @@
                 </a>
                 <div class="menu__item">
                     <div class="menu__item-show">
-                        сервис и поддержка
+                        <a href="">сервис и поддержка</a>
                     </div>
                     <div class="menu__item-hidden">
                         <div class="submenu">
@@ -509,6 +509,34 @@
     </label>
 </div>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter__group _active">
+                                        <div class="filter__show">
+                                            <span class="text14 semi-bold-text">
+                                                Стоимость
+                                            </span>
+                                            <div class="filter__action">
+                                                <button type="button" class="filter__group-clear m-btn m-btn-red-light"></button>
+                                                <button type="button" class="filter__toggle"></button>
+                                            </div>
+                                        </div>
+                                        <div class="filter__hidden" style="display: block;">
+
+                                            <div class="filter__slider">
+                                                <div class="filter__slider-inputs">
+                                                    <div class="fg">
+                                                        <input class="range-slider__input1" min="0" max="100000" type="number">
+                                                        <span>От</span>
+                                                    </div>
+                                                    <span class="filter__slider-split">–</span>
+                                                    <div class="fg">
+                                                        <input class="range-slider__input2" min="0" max="100000" type="number">
+                                                        <span>До</span>
+                                                    </div>
+                                                </div>
+                                                <div class="range-slider"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1850,72 +1878,56 @@
 
     <div class="footer__catalog">
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon"></use>
-    </svg>
+    <img src="img/header-icon.svg" alt="">
     <span>
         ГАЗОВЫЕ <br>ПЛИТЫ
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon2"></use>
-    </svg>
+    <img src="img/header-icon2.svg" alt="">
     <span>
         газоэлектрические <br>ПЛИТЫ
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon3"></use>
-    </svg>
+    <img src="img/header-icon3.svg" alt="">
     <span>
         электрические <br>ПЛИТЫ
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon4"></use>
-    </svg>
+    <img src="img/header-icon4.svg" alt="">
     <span>
         посудомоечные <br>машины
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon5"></use>
-    </svg>
+    <img src="img/header-icon5.svg" alt="">
     <span>
         вытяжки
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon6"></use>
-    </svg>
+    <img src="img/header-icon6.svg" alt="">
     <span>
         духовые <br>шкафы
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon7"></use>
-    </svg>
+    <img src="img/header-icon7.svg" alt="">
     <span>
         варочные <br>панели
     </span>
 </a>
 
         <a href="" class="footer-link">
-    <svg class="fill-svg" width="20" height="20">
-        <use xlink:href="img/sprite.svg#footerIcon8"></use>
-    </svg>
+    <img src="img/header-icon8.svg" alt="">
     <span>
         настольные <br>пЛИТЫ
     </span>
@@ -1954,6 +1966,41 @@
     <script src="js/libs.min.js"></script>
 <script src="js/main.min.js"></script>
 
+    <script>
+        const rangeSlider = document.querySelector(`.range-slider`)
+        const rangeInput0 = document.querySelector(`.range-slider__input1`)
+        const rangeInput1 = document.querySelector(`.range-slider__input2`)
+        const rangeInputs = [rangeInput0, rangeInput1]
+        if (rangeSlider) {
+            noUiSlider.create(rangeSlider, {
+                start: [10000, 50000],
+                connect: true,
+                step: 1,
+                range: {
+                    'min': 0,
+                    'max': 100000
+                }
+            });
+        }
+        if (rangeSlider) {
+            rangeSlider.noUiSlider.on('update', function(values, handle) {
+                rangeInputs[handle].value = Math.round(values[handle])
+            })
+            rangeInputs.forEach((el, index) => {
+                el.addEventListener('change', (e) => {
+                    setRangeSlider(index, e.currentTarget.value)
+                })
+            })
+        }
+
+
+        const setRangeSlider = (i, value) => {
+            let array = [null, null];
+            array[i] = value;
+
+            rangeSlider.noUiSlider.set(array);
+        };
+    </script>
 </body>
 
 </html>
