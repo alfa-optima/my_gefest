@@ -555,13 +555,34 @@
     <span>Краткое описание в PDF</span>
 </a>
 
-                                <a href="" class="text-btn">
-    <svg class="fill-svg" width="18" height="17">
-        <use xlink:href="img/sprite.svg#share"></use>
-    </svg>
-    <span>Поделиться</span>
-</a>
-
+                                <div class="share">
+                                    <button class="_show-share text-btn">
+                                        <svg class="fill-svg" width="18" height="17">
+                                            <use xlink:href="img/sprite.svg#share"></use>
+                                        </svg>
+                                        <span>Поделиться</span>
+                                    </button>
+                                    <div class="share-dropdown">
+                                        <div class="text16 semi-bold-text">Поделиться</div>
+                                        <div class="share__links">
+                                            <a href="" class="share__link">
+                                                <img src="img/share.svg" alt="">
+                                            </a>
+                                            <a href="" class="share__link">
+                                                <img src="img/share2.svg" alt="">
+                                            </a>
+                                            <a href="" class="share__link">
+                                                <img src="img/share3.svg" alt="">
+                                            </a>
+                                            <a href="" class="share__link">
+                                                <img src="img/share4.svg" alt="">
+                                            </a>
+                                        </div>
+                                        <a href="" class="text-btn">
+                                            <span>Скопировать ссылку</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="catalog-item__downloads">
                                 <a href="" class="text-btn">
@@ -2180,7 +2201,7 @@
 </div>
 
 
-<div class="sticky-nav">
+<div class="sticky-nav _mob-hide">
     <div class="container">
         <div class="sticky-nav__inner">
             <a href="" class="sticky-nav__btn m-btn m-btn-red-outline">
