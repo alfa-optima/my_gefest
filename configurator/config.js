@@ -20,7 +20,7 @@ $(document).ready(function () {
     $(e.currentTarget).addClass('_active');
 
     if (simulateCanvas.find('.interactive-img')) {
-      simulateCanvas.find('.interactive-img').remove();
+      simulateCanvas.find('.interactive-img, .moveable-control-box').remove();
     }
 
     $('<img />', {
@@ -104,7 +104,9 @@ $(document).ready(function () {
   const area = document.querySelector('.simulate__area');
 
   function convert() {
+
     simulateNav.attr('data-hide', true);
+    simulateCanvas.find('.moveable-control-box').hide();
 
     html2canvas(document.querySelector('body'), {
       x: getMetrics(area).left + (isVerticalScrollOnPage() ? getScroolWidth() / 2 : 0),
