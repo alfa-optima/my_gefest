@@ -1,0 +1,39 @@
+.product-card:hover:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: calc(100% + 1.25em);
+  height: calc(100% + 1.25em);
+  border: 1px dashed #c40e38;
+  border-radius: 0.625em;
+  pointer-events: none;
+}
+
+.simulate:before {
+  pointer-events: none;
+}
+
+.simulate__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.simulate__nav {
+  z-index: 10;
+}
+
+.interactive-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  width: 200px;
+}
+
+[data-hide='true'] {
+  display: none !important;
+}
