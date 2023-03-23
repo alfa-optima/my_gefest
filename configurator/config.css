@@ -1,4 +1,4 @@
-.product-card:hover:before {
+.simulate__sidebar .product-card:hover:before {
   content: '';
   position: absolute;
   top: 50%;
