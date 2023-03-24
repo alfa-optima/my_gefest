@@ -12,9 +12,9 @@
 }
 
 .simulate {
-  height: 800px;
   max-height: initial;
-  grid-template-columns: 1fr 1084px;
+  display: flex;
+  height: 800px;
 }
 
 .simulate__grid {
@@ -31,7 +31,9 @@
 }
 
 .simulate__area {
+  width: 1084px;
   z-index: 10;
+  flex: none;
 }
 
 .simulate__img {
