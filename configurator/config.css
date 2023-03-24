@@ -11,8 +11,31 @@
   pointer-events: none;
 }
 
+.simulate {
+  height: 800px;
+  max-height: initial;
+  grid-template-columns: 1fr 1084px;
+}
+
+.simulate__grid {
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+}
+
 .simulate:before {
   pointer-events: none;
+  width: calc(100% - 1084px);
+}
+
+.simulate__sidebar {
+  max-height: initial;
+}
+
+.simulate__area {
+  z-index: 10;
+}
+
+.simulate__img {
+  height: 100%;
 }
 
 .simulate__canvas {
@@ -30,7 +53,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  aspect-ratio: 1;
   width: 200px;
 }
 
