@@ -106,7 +106,12 @@ $(document).ready(function () {
   function convert() {
 
     simulateNav.attr('data-hide', true);
-    simulateCanvas.find('.moveable-control-box').hide();
+	
+    var controlsWasHidden = false;
+    if( simulateCanvas.find('.moveable-control-box:visible').length > 0 ){
+      simulateCanvas.find('.moveable-control-box').hide();
+      controlsWasHidden = true;
+    }
 
     html2canvas(document.querySelector('body'), {
       x: getMetrics(area).left + (isVerticalScrollOnPage() ? getScroolWidth() / 2 : 0),
@@ -115,9 +120,12 @@ $(document).ready(function () {
       height: getMetrics(area).height,
       //scale: 2,
     }).then((canvas) => {
-      canvas.toBlob(function (blob) {
-        saveAs(blob, 'sample.png');
-      });
+		canvas.toBlob(function (blob) {
+			saveAs(blob, 'sample.png');
+		});
+		if( controlsWasHidden ){
+			simulateCanvas.find('.moveable-control-box').show();
+		}
     });
 
     simulateNav.attr('data-hide', false);
