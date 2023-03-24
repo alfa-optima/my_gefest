@@ -50,6 +50,8 @@ $(document).ready(function () {
 
     moveableRef.on('drag', e => {
       e.target.style.transform = e.transform;
+
+      $('.moveable-control-box').attr('data-hide', false)
     });
     moveableRef.on('scale', e => {
       e.target.style.transform = e.drag.transform;
@@ -67,57 +69,17 @@ $(document).ready(function () {
     simulateSidebar.find('._active').removeClass('_active');
   });
 
-  /* save canvas */
-  function getMetrics(elem) {
-    const coords = elem.getBoundingClientRect();
-
-    return {
-      top: coords.top,
-      left: coords.left,
-      width: elem.offsetWidth,
-      height: elem.offsetHeight,
-    };
-  }
-
-  function getScroolWidth() {
-    const measure = $(`<div></div>`)
-      .css({
-        'position': 'absolute',
-        'overflow': 'scroll',
-        'width': '100px',
-        'top': '-9999px',
-      }).appendTo('body').get(0);
-
-    const scroolSize = measure.offsetWidth - measure.clientWidth;
-
-    measure.remove();
-
-    return scroolSize;
-  }
-
-  function isVerticalScrollOnPage() {
-    const page = $('html').get(0);
-
-    return page.scrollHeight !== page.offsetHeight
-  }
-
-  const area = document.querySelector('.simulate__area');
-
   function convert() {
-
     simulateNav.attr('data-hide', true);
 	
-    var controlsWasHidden = false;
+    let controlsWasHidden = false;
     if( simulateCanvas.find('.moveable-control-box:visible').length > 0 ){
       simulateCanvas.find('.moveable-control-box').hide();
       controlsWasHidden = true;
     }
 
-    html2canvas(document.querySelector('body'), {
-      x: getMetrics(area).left + (isVerticalScrollOnPage() ? getScroolWidth() / 2 : 0),
-      y: getMetrics(area).top + 2 * scrollY,
-      width: getMetrics(area).width,
-      height: getMetrics(area).height,
+    html2canvas(document.querySelector('.simulate__area'), {
+      backgroundColor: '#3c3c3c',
       //scale: 2,
     }).then((canvas) => {
 		canvas.toBlob(function (blob) {
