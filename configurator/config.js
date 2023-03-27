@@ -1,4 +1,12 @@
 $(document).ready(function () {
+
+  if( $('.confCatalogLink').length > 0 ){
+    $('.confCatalogLink').css('color', "#c40e38");
+    setTimeout(function(){
+      $( ".confCatalogLink" ).animate({color: "#ffffff"}, "slow");
+    }, 100);
+  }
+
   const simulateNav = $('.simulate__nav');
   const simulateSidebar = $('.simulate__sidebar');
   const simulateCanvas = $('.simulate__canvas');
@@ -16,52 +24,64 @@ $(document).ready(function () {
   })
 
   $('.product-card').click(e => {
-    $(e.currentTarget).parent().find('._active').removeClass('_active');
-    $(e.currentTarget).addClass('_active');
 
-    if (simulateCanvas.find('.interactive-img')) {
-      simulateCanvas.find('.interactive-img, .moveable-control-box').remove();
+    if( $('.simulate__canvas').length > 0 ){
+
+      $(e.currentTarget).parent().find('._active').removeClass('_active');
+      $(e.currentTarget).addClass('_active');
+
+      if (simulateCanvas.find('.interactive-img')) {
+        simulateCanvas.find('.interactive-img, .moveable-control-box').remove();
+      }
+
+      $('<img />', {
+        src: e.currentTarget.dataset.src,
+        class: 'interactive-img',
+        'data-croffle-ref': 'targetRef',
+      }).appendTo(simulateCanvas);
+
+      /* drag / move / scale */
+      const element$0 = $(`[data-croffle-ref='element$0']`).get(0);
+      const targetRef = $(`[data-croffle-ref='targetRef']`).get(0);
+
+      const moveableRef = new Moveable(element$0, {
+        target: targetRef,
+        draggable: true,
+        scalable: true,
+        rotatable: true,
+        keepRatio: true,
+        throttleDrag: 1,
+        throttleScale: 0,
+        throttleRotate: 0,
+
+        snappable: true,
+        bounds: {'left': 0, 'top': 0, 'right': 0, 'bottom': 0, 'position': 'css'},
+
+      });
+
+      moveableRef.on('drag', e => {
+        e.target.style.transform = e.transform;
+
+        $('.moveable-control-box').attr('data-hide', false)
+      });
+      moveableRef.on('scale', e => {
+        e.target.style.transform = e.drag.transform;
+      });
+      moveableRef.on('rotate', e => {
+        e.target.style.transform = e.drag.transform;
+      });
+
+      $('.moveable-control-box').attr('data-hide', true);
+      /* !drag / move / scale */
+
+    } else {
+
+      $( ".simulate__area .upload-img .upload-img__wrap" ).css('background-color', "#ff7600");
+      setTimeout(function(){
+        $( ".simulate__area .upload-img .upload-img__wrap" ).animate({backgroundColor: "#c40e38"}, "fast");
+      }, 75);
+
     }
-
-    $('<img />', {
-      src: e.currentTarget.dataset.src,
-      class: 'interactive-img',
-      'data-croffle-ref': 'targetRef',
-    }).appendTo(simulateCanvas);
-
-    /* drag / move / scale */
-    const element$0 = $(`[data-croffle-ref='element$0']`).get(0);
-    const targetRef = $(`[data-croffle-ref='targetRef']`).get(0);
-
-    const moveableRef = new Moveable(element$0, {
-      target: targetRef,
-      draggable: true,
-      scalable: true,
-      rotatable: true,
-      keepRatio: true,
-      throttleDrag: 1,
-      throttleScale: 0,
-      throttleRotate: 0,
-
-      snappable: true,
-      bounds: {'left': 0, 'top': 0, 'right': 0, 'bottom': 0, 'position': 'css'},
-
-    });
-
-    moveableRef.on('drag', e => {
-      e.target.style.transform = e.transform;
-
-      $('.moveable-control-box').attr('data-hide', false)
-    });
-    moveableRef.on('scale', e => {
-      e.target.style.transform = e.drag.transform;
-    });
-    moveableRef.on('rotate', e => {
-      e.target.style.transform = e.drag.transform;
-    });
-
-    $('.moveable-control-box').attr('data-hide', true);
-    /* !drag / move / scale */
   })
 
   clearSimulateCanvas.click(() => {
@@ -69,7 +89,8 @@ $(document).ready(function () {
     simulateSidebar.find('._active').removeClass('_active');
   });
 
-  function convert() {
+  function convert(){
+
     simulateNav.attr('data-hide', true);
 	
     let controlsWasHidden = false;
@@ -78,21 +99,26 @@ $(document).ready(function () {
       controlsWasHidden = true;
     }
 
-    html2canvas(document.querySelector('.simulate__area'), {
-      backgroundColor: '#3c3c3c',
-      //scale: 2,
-    }).then((canvas) => {
-		canvas.toBlob(function (blob) {
-			saveAs(blob, 'sample.png');
-		});
-		if( controlsWasHidden ){
-			simulateCanvas.find('.moveable-control-box').show();
-		}
-    });
+    html2canvas(
+        document.querySelector('.simulate__area'), {
+            backgroundColor: '#3c3c3c',
+            scale: 2,
+      }
+    ).then(
+        (canvas) => {
+            canvas.toBlob(function (blob){
+                saveAs(blob, 'sample.png');
+            });
+            if( controlsWasHidden ){
+                simulateCanvas.find('.moveable-control-box').show();
+            }
+      }
+    );
 
     simulateNav.attr('data-hide', false);
   }
 
   saveSimulateCanvas.bind('click', convert);
   /* !save canvas*/
+  
 });
